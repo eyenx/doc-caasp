@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<?xml-stylesheet href="urn:x-suse:xslt:profiling:docbook50-profile.xsl"
+ type="text/xml"
+ title="Profiling step"?>
+<!DOCTYPE article
+[
+  <!ENTITY % entities SYSTEM "entity-decl.ent">
+    %entities;
+]>
+<?provo dirname="faqs/"?>
+<article version="5.1" xml:lang="en" xml:id="art.caas.faqs"
+ xmlns="http://docbook.org/ns/docbook"
+ xmlns:xi="http://www.w3.org/2001/XInclude"
+ xmlns:xlink="http://www.w3.org/1999/xlink">
+ <title>Frequently Asked Questions</title>
+ <subtitle>&productname; &productnumber;</subtitle>
+ <info>
+  <productnumber>&productnumber;</productnumber><productname>&productname;</productname><date>
+<?dbtimestamp format="B d, Y"?></date>
+</info> 
+
+<qandaset>
+ <qandaentry>
+  <question>
+   <para>
+    How can I obtain and install &productname;? 
+   </para>
+  </question>
+  <answer>
+   You can download the <literal>iso</literal> image from ... and then proceed as described in <xref linkend="art.caasp.quickstart"/>.
+  </answer>
+ </qandaentry>
+ 
+ <qandaentry>
+  <question>
+   <para>
+    What existing core infrastructure services are required or recommended to run the &productname; platform? 
+   </para>
+  </question>
+  <answer>
+   <para>
+    On-premise you need to run the following services:
+   </para>
+   <variablelist>
+    <varlistentry>
+     <term>DNS</term>
+     <listitem>
+      <para>
+       The service is required for the &admin_node; and the &kmaster; as the nodes must have resolvable A entries that can be resolved within the L2 subnet as well as from any client accessing the cluster. &kworker;s are able to resolve the &kmaster; by using the hosts file entry that is managed by &salt;. The hosts file entry points to the &kmaster; <literal>fqdn</literal> entered into &dashboard;. Resolvable FQDNS are no longer required for &kworker;s as &salt; keeps the hosts file up to date with a reference for each node to every other node's unique hostname (using the &sminion; ID). &productabbr; uses <literal>&lt;saltminionID&gt;.infra.caasp.local </literal> for referencing all nodes.
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term>DHCP</term>
+     <listitem>
+      <para>
+      Is recommended for large-scale clusters. As &salt; manages cluster nodes hosts files there is no need to use static IP addresses. Ensure that DNS entries for the &admin_node; and the &kmaster; are always correct and up-to-date. For this purpose, the DHCP server can be configured to automatically update the DNS server  for each host name.
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term>NTP</term>
+     <listitem>
+      <para>
+      The installer asks for an NTP server address. As &suse; does not have a corporate subdomain alias in <literal>pool.ntp.org</literal>, you need to choose NTP servers for your region or use your company own NTP servers (required for clusters that do not have external Internet access). The &admin_node; runs <literal>ntpd</literal>, other cluster nodes run <literal>systemd-timesyncd</literal> daemon configured to point to the &admin_node;
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </answer>
+ </qandaentry>
+</qandaset>
+ 
+ </article>

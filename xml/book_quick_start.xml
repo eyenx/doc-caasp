@@ -29,6 +29,7 @@
  </info>
 
  <xi:include href="install_quick.xml"/>
+ <xi:include href="faqs_article.xml"/>
 
 <!-- ===================================================================== -->
 <!-- Appendix                                                              -->

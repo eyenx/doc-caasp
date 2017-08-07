@@ -102,6 +102,315 @@
    </sect3>
   </sect2>
 
+<!-- ####### NEW ###### -->
+ </sect1>
+ 
+ <sect1>
+  <title>Detailled Installation Instructions</title>
+  <para>
+   Configure the following mandatory settings on the <guimenu>Installation
+    Overview</guimenu> screen.
+  </para>
+  <note>
+   <title>Help and Release Notes</title>
+   <para>
+    From this point on, a brief help document and the Release Notes can be
+    viewed from any screen during the installation process by selecting
+    <guimenu>Help</guimenu> or <guimenu>Release Notes</guimenu>
+    respectively.
+   </para>
+  </note>
+  <sect2 xml:id="sec.caasp.install.keyboard">
+   <title>Keyboard Layout</title>
+   <para>
+    The <guimenu>Keyboard Layout</guimenu> is initialized with the
+    language settings you have chosen on the boot screen. Change it here,
+    if necessary.
+   </para>
+  </sect2>
+  <sect2 xml:id="sec.caasp.install.rootpw">
+   <title>Password for the &rootuser; User</title>
+   <para>
+    Type a password for the system administrator account (called the
+    &rootuser; user) and confirm it.
+   </para>
+   <warning>
+    <title>Do not forget the &rootuser; Password</title>
+    <para>
+     You should never forget the &rootuser; password! After you entered it
+     here, the password cannot be retrieved. See
+     <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_i_yast2_user_root.html"/>
+     for more information.
+    </para>
+   </warning>
+  </sect2>
+  <sect2 xml:id="sec.caasp.install.registration">
+   <title>Registration Code or SMT Server URL</title>
+   <para>
+    Enter the <guimenu>Registration Code or SMT Server URL</guimenu>. SMT
+    Server URLs must use the <literal>https</literal> or
+    <literal>http</literal> protocol; other schemes are not supported.
+   </para>
+  </sect2>
+  <sect2 xml:id="sec.caasp.install.role">
+   <title>System Role</title>
+   <para>
+    Select the <guimenu>System Role</guimenu> for your system.
+   </para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      Administration Node (Dashboard)
+     </term>
+     <listitem>
+      <para>
+       The &admin_node; providing the administration dashboard for the
+       cluster.
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term>
+      Cluster Node
+     </term>
+     <listitem>
+      <para>
+       A cluster node running containers or the container orchestration
+       framework.
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term>
+      Plain System
+     </term>
+     <listitem>
+      <para>
+       A plain node that can be used for testing and debugging purposes in
+       your cluster, but it is not usually needed.
+      </para>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+  </sect2>
+  <sect2 xml:id="sec.caasp.install.ntp">
+   <title>NTP Servers</title>
+   <para>
+    Enter host names or IP addresses of one or more <guimenu>NTP
+     Servers</guimenu> for the node, separated by white spaces or colons.
+    While a single server is sufficient, nodes should use at least three
+    for optimal precision and reliability.
+   </para>
+   <para>
+    For more information about <literal>NTP</literal>, refer to
+    <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/cha_netz_xntp.html"/>
+   </para>
+  </sect2>
+  <sect2 xml:id="sec.caasp.install.part">
+   <title>Partitioning</title>
+   <para>
+    Review the partition setup proposed by the system and change it if
+    necessary. You have the following options:
+   </para>
+   <variablelist>
+    <varlistentry>
+     <term>
+      Select a hard disk
+     </term>
+     <listitem>
+      <para>
+       Select a disk to which install &productname; to with the
+       recommended partitioning scheme.
+      </para>
+     </listitem>
+    </varlistentry>
+    <varlistentry>
+     <term><guimenu>Custom Partitioning (for Experts)</guimenu>
+     </term>
+     <listitem>
+      <para>
+       Opens the <guimenu>Expert Partitioner</guimenu> described in
+       <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_yast2_i_y2_part_expert.html"/>
+       .
+      </para>
+      <warning>
+       <title>For Experts only</title>
+       <para>
+        As the name suggests, the <guimenu>Expert Partitioner</guimenu> is
+        for experts only. Custom partitioning schemes that do not meet the
+        requirements of &productname; are not supported.
+       </para>
+       <itemizedlist>
+        <title>Requirements for custom partitioning schemes</title>
+        <listitem>
+         <para>
+          &productname; exclusively supports the file system types &btrfs;
+          and OverlayFS. A read-only &btrfs; file system is used for the
+          root file system which enables transactional updates.
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          For snapshots, partitions must have a capacity of at least 11
+          GB.
+         </para>
+        </listitem>
+        <listitem>
+         <para>
+          Depending on the number and size of your containers, you will
+          need sufficient space under the <literal>/var</literal> mount
+          point.
+         </para>
+        </listitem>
+       </itemizedlist>
+      </warning>
+     </listitem>
+    </varlistentry>
+   </variablelist>
+   <para>
+    To accept the proposed setup without any changes, choose
+    <guimenu>Next</guimenu> to proceed.
+   </para>
+   <informalfigure>
+    <mediaobject>
+     <imageobject role="fo">
+      <imagedata fileref="install_partitioner.png" width="100%"/>
+     </imageobject>
+     <imageobject role="html">
+      <imagedata fileref="install_partitioner.png" width="100%"/>
+     </imageobject>
+    </mediaobject>
+   </informalfigure>
+   <informalfigure>
+    <mediaobject>
+     <imageobject role="fo">
+      <imagedata fileref="install_partitioner_expert.png" width="100%"/>
+     </imageobject>
+     <imageobject role="html">
+      <imagedata fileref="install_partitioner_expert.png" width="100%"/>
+     </imageobject>
+    </mediaobject>
+   </informalfigure>
+  </sect2>
+  <sect2 xml:id="sec.caasp.install.bootloader">
+   <title>Booting</title>
+   <para>
+    This section shows the boot loader configuration. Changing the
+    defaults is only recommended if really needed. Refer to
+    <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/cha_grub2.html"/>
+    for details.
+   </para>
+   <informalfigure>
+    <mediaobject>
+     <imageobject role="fo">
+      <imagedata fileref="install_bootloader.png" width="100%"/>
+     </imageobject>
+     <imageobject role="html">
+      <imagedata fileref="install_bootloader.png" width="100%"/>
+     </imageobject>
+    </mediaobject>
+   </informalfigure>
+  </sect2>
+  <sect2 xml:id="sec.caasp.install.network">
+   <title>Network Configuration</title>
+   <para>
+    If the network could not be configured automatically while starting
+    the installation system, you have to manually configure the
+    <guimenu>Network Settings</guimenu>. Please make sure at least one
+    network interface is connected to the Internet in order to register
+    your product.
+   </para>
+   <para>
+    By default, the installer requests a host name from the DHCP server.
+    If you set a custom name in the <guimenu>Hostname/DNS</guimenu> tab,
+    make sure the it is unique.
+   </para>
+   <para>
+    For more information on configuring network connections, refer to
+    <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/sec_basicnet_yast.html"/>
+    .
+   </para>
+   <important>
+    <title>Reliable Networking</title>
+    <para>
+     Please make sure all nodes are on the same network and can
+     communicate without interruptions. If you are using host names to
+     specify nodes, please make sure you have reliable DNS resolution at
+     all times, especially in combination with DHCP.
+    </para>
+   </important>
+   <informalfigure>
+    <mediaobject>
+     <imageobject role="fo">
+      <imagedata fileref="install_network.png" width="100%"/>
+     </imageobject>
+     <imageobject role="html">
+      <imagedata fileref="install_network.png" width="100%"/>
+     </imageobject>
+    </mediaobject>
+   </informalfigure>
+  </sect2>
+  <sect2 xml:id="sec.caasp.install.kdump">
+   <title>&kdump;</title>
+   <para>
+    Kdump saves the memory image (<quote>core dump</quote>) to the file
+    system in case the kernel crashes. This enables you to find the cause
+    of the crash by debugging the dump file. See
+    <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_tuning/data/cha_tuning_kdump_basic.html"/>
+    for more information.
+   </para>
+   <warning>
+    <title>Kdump with large amounts of RAM</title>
+    <para>
+     If you have a system with large amounts of RAM or a small hard drive,
+     core dumps may not be able to fit on the disk. If the installer warns
+     you about this, there are two options:
+    </para>
+    <orderedlist>
+     <listitem>
+      <para>
+       Enter the <guimenu>Expert Partitioner</guimenu> and increase the
+       size of the root partition so that it can accommodate the size of
+       the core dump. In this case, you will need to decrease the size of
+       the data partition accordingly. Remember to keep all other
+       parameters of the partitioning (e.g. the root file system, mount
+       point of data partition) when doing these changes.
+      </para>
+     </listitem>
+     <listitem>
+      <para>
+       Disable kdump completely.
+      </para>
+     </listitem>
+    </orderedlist>
+   </warning>
+   <informalfigure>
+    <mediaobject>
+     <imageobject role="fo">
+      <imagedata fileref="install_kdump.png" width="100%"/>
+     </imageobject>
+     <imageobject role="html">
+      <imagedata fileref="install_kdump.png" width="100%"/>
+     </imageobject>
+    </mediaobject>
+   </informalfigure>
+  </sect2>
+  <sect2>
+   <title>System Information</title>
+   <para>
+    View detailed hardware information by clicking <guimenu>System
+     Information</guimenu>. In this screen you can also change
+    <guimenu>Kernel Settings</guimenu>. See
+    <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_tuning/data/cha_tuning_io.html"/>
+    for more information.
+   </para>
+  </sect2>
+ </sect1>
+ 
+ <!-- ####### OLD ###### -->
+ 
+ <sect1>
+  <title>Quick Install </title>
   <sect2 xml:id="sec.caasp.installquick.admin">
    <title>Installing the Controller Node</title>
    <para>

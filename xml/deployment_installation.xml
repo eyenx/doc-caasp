@@ -19,7 +19,7 @@
   This chapter gives an overview on how to run through a default installation
   of &productname; for the &amd64;/&intel64; architecture.
  </para>
- <sect1 xml:id="sec.caasp.installquick">
+ <sect1 xml:id="sec.installquick">
   <title>Installing &productname;</title>
 
   <para>
@@ -27,13 +27,13 @@
    &productnumber; cluster.
   </para>
 
-  <sect2 xml:id="sec.caasp.installquick.sysreqs">
+  <sect2 xml:id="sec.installquick.sysreqs">
    <title>System Requirements</title>
    <para>
     Before you begin the installation, please make sure your system meets all
     requirements listed below.
    </para>
-   <sect3 xml:id="sec.caasp.installquick.hwreqs">
+   <sect3 xml:id="sec.installquick.hwreqs">
     <title>Minimum Hardware Requirements</title>
     <itemizedlist mark="bullet" spacing="normal">
      <listitem>
@@ -55,7 +55,7 @@
      </listitem>
     </itemizedlist>
    </sect3>
-   <sect3 xml:id="sec.caasp.installquick.netreqs">
+   <sect3 xml:id="sec.installquick.netreqs">
     <title>Network Requirements</title>
     <itemizedlist mark="bullet" spacing="normal">
      <listitem>
@@ -85,7 +85,7 @@
      </listitem>
     </itemizedlist>
    </sect3>
-   <sect3 xml:id="sec.caasp.installquick.limits">
+   <sect3 xml:id="sec.installquick.limits">
     <title>Limitations</title>
     <itemizedlist mark="bullet" spacing="normal">
      <listitem>
@@ -120,7 +120,7 @@
     respectively.
    </para>
   </note>
-  <sect2 xml:id="sec.caasp.install.keyboard">
+  <sect2 xml:id="sec.install.keyboard">
    <title>Keyboard Layout</title>
    <para>
     The <guimenu>Keyboard Layout</guimenu> is initialized with the
@@ -128,7 +128,7 @@
     if necessary.
    </para>
   </sect2>
-  <sect2 xml:id="sec.caasp.install.rootpw">
+  <sect2 xml:id="sec.install.rootpw">
    <title>Password for the &rootuser; User</title>
    <para>
     Type a password for the system administrator account (called the
@@ -144,7 +144,7 @@
     </para>
    </warning>
   </sect2>
-  <sect2 xml:id="sec.caasp.install.registration">
+  <sect2 xml:id="sec.install.registration">
    <title>Registration Code or SMT Server URL</title>
    <para>
     Enter the <guimenu>Registration Code or SMT Server URL</guimenu>. SMT
@@ -152,7 +152,7 @@
     <literal>http</literal> protocol; other schemes are not supported.
    </para>
   </sect2>
-  <sect2 xml:id="sec.caasp.install.role">
+  <sect2 xml:id="sec.install.role">
    <title>System Role</title>
    <para>
     Select the <guimenu>System Role</guimenu> for your system.
@@ -193,7 +193,7 @@
     </varlistentry>
    </variablelist>
   </sect2>
-  <sect2 xml:id="sec.caasp.install.ntp">
+  <sect2 xml:id="sec.install.ntp">
    <title>NTP Servers</title>
    <para>
     Enter host names or IP addresses of one or more <guimenu>NTP
@@ -206,7 +206,7 @@
     <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/cha_netz_xntp.html"/>
    </para>
   </sect2>
-  <sect2 xml:id="sec.caasp.install.part">
+  <sect2 xml:id="sec.install.part">
    <title>Partitioning</title>
    <para>
     Review the partition setup proposed by the system and change it if
@@ -292,7 +292,7 @@
     </mediaobject>
    </informalfigure>
   </sect2>
-  <sect2 xml:id="sec.caasp.install.bootloader">
+  <sect2 xml:id="sec.install.bootloader">
    <title>Booting</title>
    <para>
     This section shows the boot loader configuration. Changing the
@@ -311,7 +311,7 @@
     </mediaobject>
    </informalfigure>
   </sect2>
-  <sect2 xml:id="sec.caasp.install.network">
+  <sect2 xml:id="sec.install.network">
    <title>Network Configuration</title>
    <para>
     If the network could not be configured automatically while starting
@@ -350,7 +350,7 @@
     </mediaobject>
    </informalfigure>
   </sect2>
-  <sect2 xml:id="sec.caasp.install.kdump">
+  <sect2 xml:id="sec.install.kdump">
    <title>&kdump;</title>
    <para>
     Kdump saves the memory image (<quote>core dump</quote>) to the file
@@ -411,13 +411,13 @@
  
  <sect1>
   <title>Quick Install </title>
-  <sect2 xml:id="sec.caasp.installquick.admin">
+  <sect2 xml:id="sec.installquick.admin">
    <title>Installing the Controller Node</title>
    <para>
     Use these instructions if there is no existing Linux system on your
     machine, or if you want to replace an existing Linux system.
    </para>
-   <procedure xml:id="pro.caasp.installquick.admin">
+   <procedure xml:id="pro.installquick.admin">
     <step>
      <para>
       Insert the &productname; DVD into the drive, then reboot the computer to
@@ -823,13 +823,13 @@
    </procedure>
   </sect2>
 
-  <sect2 xml:id="sec.caasp.installquick.conf">
+  <sect2 xml:id="sec.installquick.conf">
    <title>Initial Cluster Configuration</title>
    <para>
     In order to finalize the configuration of the &admin_node;, a few
     additional steps are required.
    </para>
-   <procedure xml:id="pro.caasp.installquick.conf">
+   <procedure xml:id="pro.installquick.conf">
     <step>
      <para>
       After the &admin_node; has finished booting and you see the login prompt,
@@ -920,13 +920,13 @@
      </informalfigure>
      <para>
       Click <guimenu>Next</guimenu> to proceed and install some cluster nodes
-      as described in <xref linkend="sec.caasp.installquick.node"/>.
+      as described in <xref linkend="sec.installquick.node"/>.
      </para>
     </step>
    </procedure>
   </sect2>
 
-  <sect2 xml:id="sec.caasp.installquick.node">
+  <sect2 xml:id="sec.installquick.node">
    <title>Installing Cluster Nodes</title>
    <para>
     Cluster nodes can be installed manually or with &ay;. Manual installation
@@ -952,16 +952,16 @@
    <para>
     Before you can set up a cluster node, you have to install and bootstrap an
     &admin_node; to run the administration dashboard. Refer to
-    <xref linkend="sec.caasp.installquick.admin"/> for information on how to
+    <xref linkend="sec.installquick.admin"/> for information on how to
     install the controller node.
    </para>
-   <sect3 xml:id="sec.caasp.installquick.node.manual">
+   <sect3 xml:id="sec.installquick.node.manual">
     <title>Manual Installation</title>
-    <procedure xml:id="pro.caasp.installquick.node.manual">
+    <procedure xml:id="pro.installquick.node.manual">
      <step>
       <para>
        Follow the steps as described in
-       <xref linkend="sec.caasp.installquick.admin"/>
+       <xref linkend="sec.installquick.admin"/>
       </para>
      </step>
      <step>
@@ -995,14 +995,14 @@
      </step>
     </procedure>
    </sect3>
-   <sect3 xml:id="sec.caasp.installquick.node.ay">
+   <sect3 xml:id="sec.installquick.node.ay">
     <title>Installation with &ay;</title>
     <para>
      Please make sure you have finished the initial configuration described in
-     <xref linkend="sec.caasp.installquick.conf"/> before installing cluster
+     <xref linkend="sec.installquick.conf"/> before installing cluster
      nodes with &ay;.
     </para>
-    <procedure xml:id="pro.caasp.installquick.node.ay">
+    <procedure xml:id="pro.installquick.node.ay">
      <step>
       <para>
        Insert the &productname; DVD into the drive, then reboot the computer to
@@ -1077,7 +1077,7 @@
    </sect3>
   </sect2>
 
-  <sect2 xml:id="sec.caasp.installquick.bootstrap">
+  <sect2 xml:id="sec.installquick.bootstrap">
    <title>Bootstrapping the Cluster</title>
    <para>
     To complete the installation of your &productname; cluster, it is necessary
@@ -1086,7 +1086,7 @@
 <!-- cwickert 2017-07-23: FIXME We are already past AutoYaST -->
 <!-- This process leverages &ay; and is (almost) fully automated. -->
    </para>
-   <procedure xml:id="pro.caasp.installquick.bootstrap">
+   <procedure xml:id="pro.installquick.bootstrap">
     <step>
      <para>
       Point a web browser to
@@ -1122,7 +1122,7 @@
 <!-- cwickert 2017-07-23: FIXME explain relation of internal and external names -->
 <!-- Make sure the <guimenu>Hostname</guimenu> of the master matches the
       name configured as <guimenu>External Kubernetes API server FQDN</guimenu>
-      in <xref linkend="sec.caasp.installquick.conf"/>. If necessary, go
+      in <xref linkend="sec.installquick.conf"/>. If necessary, go
       <guimenu>Back</guimenu> to chance the setting accordingly. -->
      </para>
     </step>

@@ -106,12 +106,24 @@
  </sect1>
  
  <sect1>
+  <title>Steps of the Installation</title>
+  
+  <para>
+   The interactive installation of &productname; split into several steps is
+   listed below. <!-- FIXME cwickert 2017-08-09
+   For more information about performing
+   non-interactive automated installations, see
+   <xref linkend="book.autoyast"/>. -->
+  </para>
+ </sect1>
+ <sect1>
   <title>Detailled Installation Instructions</title>  
   <para>
    The interactive installation of &productname; split into several steps is
-   listed below. <!-- For more information about performing
-   non-interactive automated installations, see
-   <xref linkend="book.autoyast"/>.  -->
+   listed below. Some are mandatory while others are optional.
+   <!-- FIXME cwickert 2017-08-09
+    For more information about performing non-interactive automated 
+    installations, see <xref linkend="book.autoyast"/>. -->
   </para>
   
   <para>
@@ -136,6 +148,7 @@
   </tip>
   
   <orderedlist spacing="normal">
+   <title>Mandatory Steps</title>
    <!-- <listitem>
     <para>
      <xref linkend="sec.i.yast2.self_update" xrefstyle="HeadingOnPage"/>
@@ -151,17 +164,10 @@
      <xref linkend="sec.install.rootpw" xrefstyle="HeadingOnPage"/>
     </para>
    </listitem>
-   <!-- <listitem arch="zseries" os="sles">
-    <para>
-     <xref linkend="sec.i.yast2.s390.part" xrefstyle="HeadingOnPage"/>
-    </para>
-    </listitem>  -->
-   <!-- <listitem os="sles;sled">  -->
    <listitem>
     <para>
      <xref linkend="sec.install.registration" xrefstyle="HeadingOnPage"/>
     </para>
-    <!-- <listitem os="sles;sled">  -->
    </listitem>
    <listitem>
     <para>
@@ -173,6 +179,9 @@
      <xref linkend="sec.install.ntp" xrefstyle="HeadingOnPage"/>
     </para>
    </listitem>
+  </orderedlist>
+  <orderedlist>
+   <title>Optional Configuration</title>
    <listitem>
     <para>
      <xref linkend="sec.install.part" xrefstyle="HeadingOnPage"/>
@@ -203,7 +212,7 @@
    Configure the following mandatory settings on the <guimenu>Installation
     Overview</guimenu> screen.
   </para>
-  <note>
+  <tip>
    <title>Help and Release Notes</title>
    <para>
     From this point on, a brief help document and the Release Notes can be
@@ -211,33 +220,126 @@
     <guimenu>Help</guimenu> or <guimenu>Release Notes</guimenu>
     respectively.
    </para>
-  </note>
+  </tip>
   <sect2 xml:id="sec.install.keyboard">
    <title>Keyboard Layout</title>
    <para>
     The <guimenu>Keyboard Layout</guimenu> is initialized with the
-    language settings you have chosen on the boot screen. Change it here,
-    if necessary.
+    language settings you have chosen on the boot screen. Change it, if
+    necessary.
    </para>
   </sect2>
   <sect2 xml:id="sec.install.rootpw">
    <title>Password for the &rootuser; User</title>
+   <!-- <title>Password for the System Administrator &rootuser;</title> -->
    <para>
-    Type a password for the system administrator account (called the
-    &rootuser; user) and confirm it.
+    &rootuser; is the name of the superuser, or the administrator of the system.
+    Unlike regular users (who may or may not have permission to access certain
+    areas or execute certain commands on the system), &rootuser; has unlimited
+    access to change the system configuration, install programs, and set up new
+    hardware. If users forget their passwords or have other problems with the
+    system, &rootuser; can help. The &rootuser; account should only be used for
+    system administration, maintenance, and repair. Logging in as &rootuser; for
+    daily work is rather risky: a single mistake could lead to irretrievable
+    loss of system files.
    </para>
-   <warning>
-    <title>Do not forget the &rootuser; Password</title>
+   
+   <para>
+    For verification purposes, the password for &rootuser; must be entered
+    twice. Do not forget the &rootuser; password. After having been entered,
+    this password cannot be retrieved.
+   </para>
+   
+   <tip>
+    <title>Passwords and Keyboard Layout</title>
     <para>
-     You should never forget the &rootuser; password! After you entered it
-     here, the password cannot be retrieved. See
-     <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_i_yast2_user_root.html"/>
-     for more information.
+     It is recommended to only use characters that are available on an English
+     keyboard. In case of a system error or when you need to start your system
+     in rescue mode a localized keyboard might not be available.
     </para>
-   </warning>
+   </tip>
+    
+   <important>
+    <title>The <systemitem class="username">root</systemitem> User</title>
+    <para>
+     The user &rootuser; has all the permissions needed to make changes to the
+     system. To carry out such tasks, the &rootuser; password is required. You
+     cannot carry out any administrative tasks without this password.
+    </para>
+   </important>
+   
   </sect2>
   <sect2 xml:id="sec.install.registration">
    <title>Registration Code or SMT Server URL</title>
+   <!-- <title>&scc; Registration</title> -->
+   
+   <para>
+    To get technical support and product updates, you need to register and
+    activate your product with the &scc;. Registering &productname; now grants
+    you immediate access to the update repository. This enables you to install
+    the system with the latest updates and patches available.
+    <!-- If you are offline
+    or want to skip this step, select <guimenu>Skip Registration</guimenu>. You
+    can register your system at any time later from the installed system. -->
+   </para>
+   
+   <note>
+    <title>Network Configuration</title>
+    <para>
+     After booting into the installation, the installation routine is set up.
+     During this setup, an attempt to configure all network interfaces with DHCP
+     is made. In case DHCP is not available or if you want to modify the network
+     configuration, click <guimenu>Network Configuration</guimenu> in the upper
+     right corner of the <guimenu>&scc; Registration</guimenu> screen. The
+     &yast; module <guimenu>Network Settings</guimenu> opens. See
+     <xref linkend="sec.install.network"/> for details.
+    </para>
+   </note>
+   
+   <para>
+    To register your system, provide the <guimenu>E-mail</guimenu> address
+    associated with the &suse; account you or your organization uses to manage
+    subscriptions. In case you do not have a SUSE account yet, go to the &scc;
+    home page (<link xlink:href="&sccurl;"/>) to create one.
+   </para>
+   
+   <para>
+    Enter the <guimenu>Registration Code</guimenu> you received with your copy
+    of &productname;.
+    <!-- FIXME cwickert 2017-08-09
+     &yast; can also read registration codes from a USB storage
+    device such as a flash disk. For details, see
+    <xref linkend="sec.i.yast2.conf.manual.cc.usb"/>. -->
+   </para>
+   
+   <para>
+    Proceed with <guimenu>Next</guimenu> to start the registration process. If
+    one or more local registration servers are available on your network, you
+    can choose one of them from a list&mdash;by default &productname; is
+    registered at the &scc;. If your local registration server was not
+    discovered automatically, choose <guimenu>Cancel</guimenu>, select
+    <guimenu>Register System via local SMT Server</guimenu> and enter the URL of
+    the server. Restart the registration by choosing <guimenu>Next</guimenu>
+    again.
+   </para>
+   
+   <!-- <para>
+    During the registration, the online update repositories will be added to
+    your installation setup. When finished, you can choose whether to install
+    the latest available package versions from the update repositories. This
+    ensures that &productname; is installed with the latest security updates
+    available. If you choose <guimenu>No</guimenu>, all packages will be
+    installed from the installation media. Proceed with <guimenu>Next</guimenu>.
+   </para>
+   
+   <para>
+    If the system was successfully registered during installation, &yast; will
+    disable repositories from local installation media such as CD/DVD or flash
+    disks when the installation has been completed. This prevents problems if
+    the installation source is no longer available and ensures that you always
+    get the latest updates from the online repositories.
+    </para> -->
+   
    <para>
     Enter the <guimenu>Registration Code or SMT Server URL</guimenu>. SMT
     Server URLs must use the <literal>https</literal> or
@@ -363,26 +465,28 @@
     To accept the proposed setup without any changes, choose
     <guimenu>Next</guimenu> to proceed.
    </para>
-   <informalfigure>
+   <figure>
+    <title>Hard Disk Selection</title>
     <mediaobject>
      <imageobject role="fo">
-      <imagedata fileref="install_partitioner.png" width="100%"/>
+      <imagedata fileref="install_partitioner.png" width="75%"/>
      </imageobject>
      <imageobject role="html">
-      <imagedata fileref="install_partitioner.png" width="100%"/>
+      <imagedata fileref="install_partitioner.png" width="75%"/>
      </imageobject>
     </mediaobject>
-   </informalfigure>
-   <informalfigure>
+   </figure>
+   <figure>
+    <title>Expert Partitioner</title>
     <mediaobject>
      <imageobject role="fo">
-      <imagedata fileref="install_partitioner_expert.png" width="100%"/>
+      <imagedata fileref="install_partitioner_expert.png" width="75%"/>
      </imageobject>
      <imageobject role="html">
-      <imagedata fileref="install_partitioner_expert.png" width="100%"/>
+      <imagedata fileref="install_partitioner_expert.png" width="75%"/>
      </imageobject>
     </mediaobject>
-   </informalfigure>
+   </figure>
   </sect2>
   <sect2 xml:id="sec.install.bootloader">
    <title>Booting</title>
@@ -392,16 +496,17 @@
     <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/cha_grub2.html"/>
     for details.
    </para>
-   <informalfigure>
+   <figure>
+    <title>Boot Loader Settings</title>
     <mediaobject>
      <imageobject role="fo">
-      <imagedata fileref="install_bootloader.png" width="100%"/>
+      <imagedata fileref="install_bootloader.png" width="75%"/>
      </imageobject>
      <imageobject role="html">
-      <imagedata fileref="install_bootloader.png" width="100%"/>
+      <imagedata fileref="install_bootloader.png" width="75%"/>
      </imageobject>
     </mediaobject>
-   </informalfigure>
+   </figure>
   </sect2>
   <sect2 xml:id="sec.install.network">
    <title>Network Configuration</title>
@@ -431,16 +536,17 @@
      all times, especially in combination with DHCP.
     </para>
    </important>
-   <informalfigure>
+   <figure>
+    <title>Network Settings</title>
     <mediaobject>
      <imageobject role="fo">
-      <imagedata fileref="install_network.png" width="100%"/>
+      <imagedata fileref="install_network.png" width="75%"/>
      </imageobject>
      <imageobject role="html">
-      <imagedata fileref="install_network.png" width="100%"/>
+      <imagedata fileref="install_network.png" width="75%"/>
      </imageobject>
     </mediaobject>
-   </informalfigure>
+   </figure>
   </sect2>
   <sect2 xml:id="sec.install.kdump">
    <title>&kdump;</title>
@@ -476,16 +582,17 @@
      </listitem>
     </orderedlist>
    </warning>
-   <informalfigure>
+   <figure>
+    <title>&kdump; Start-Up</title>
     <mediaobject>
      <imageobject role="fo">
-      <imagedata fileref="install_kdump.png" width="100%"/>
+      <imagedata fileref="install_kdump.png" width="75%"/>
      </imageobject>
      <imageobject role="html">
-      <imagedata fileref="install_kdump.png" width="100%"/>
+      <imagedata fileref="install_kdump.png" width="75%"/>
      </imageobject>
     </mediaobject>
-   </informalfigure>
+   </figure>
   </sect2>
   <sect2 xml:id="sec.install.sysinfo">
    <title>System Information</title>
@@ -509,7 +616,7 @@
     Use these instructions if there is no existing Linux system on your
     machine, or if you want to replace an existing Linux system.
    </para>
-   <procedure xml:id="pro.installquick.admin">
+   <procedure xml:id="pro.install.admin">
     <step>
      <para>
       Insert the &productname; DVD into the drive, then reboot the computer to
@@ -524,16 +631,17 @@
       <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_i_yast2_startup.html"/>
       for more information about changing boot options.
      </para>
-     <informalfigure>
+     <figure>
+      <title>The Boot Screen on Machines with a Traditional BIOS</title>
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="install_boot.png" width="100%"/>
+        <imagedata fileref="install_boot.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="install_boot.png" width="100%"/>
+        <imagedata fileref="install_boot.png" width="75%"/>
        </imageobject>
       </mediaobject>
-     </informalfigure>
+     </figure>
     </step>
     <step>
      <para>
@@ -554,16 +662,17 @@
       Configure the following mandatory settings on the <guimenu>Installation
       Overview</guimenu> screen.
      </para>
-     <informalfigure>
+     <figure>
+      <title>Installation Overview</title>
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="install_overview_admin.png" width="100%"/>
+        <imagedata fileref="install_overview_admin.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="install_overview_admin.png" width="100%"/>
+        <imagedata fileref="install_overview_admin.png" width="75%"/>
        </imageobject>
       </mediaobject>
-     </informalfigure>
+     </figure>
      <para>
       Optionally, you can customize the following settings. If you do not make
       any changes, defaults are used. A brief summary of the settings is
@@ -592,32 +701,35 @@
       your system. After you click <guimenu>Install</guimenu> a second time,
       the installation process starts.
      </para>
-     <informalfigure>
+     <figure>
+      <title>Installation Confirmation</title>
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="install_confirm.png" width="100%"/>
+        <imagedata fileref="install_confirm.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="install_confirm.png" width="100%"/>
+        <imagedata fileref="install_confirm.png" width="75%"/>
        </imageobject>
       </mediaobject>
-     </informalfigure>
+     </figure>
     </step>
     <step>
      <para>
       During the installation, the progress is shown in detail on the
       <guimenu>Details</guimenu> tab.
      </para>
-     <informalfigure>
+     <!-- FIXME cwickert 2017-08-09: We don't really need this screen, do we? -->
+     <figure>
+      <title>Installation Progress</title>
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="install_perform.png" width="100%"/>
+        <imagedata fileref="install_perform.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="install_perform.png" width="100%"/>
+        <imagedata fileref="install_perform.png" width="75%"/>
        </imageobject>
       </mediaobject>
-     </informalfigure>
+     </figure>
     </step>
     <step>
      <para>
@@ -646,16 +758,17 @@
       prompt.
      </para>
 <!-- cwickert 2017-07-23 TODO: We don't really need this image, do we? -->
-<!-- <informalfigure>
+<!-- <figure>
+      <title>Dashboard Login</title
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="velum_login.png" width="100%"/>
+        <imagedata fileref="velum_login.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="velum_login.png" width="100%"/>
+        <imagedata fileref="velum_login.png" width="75%"/>
        </imageobject>
       </mediaobject>
-      </informalfigure> -->
+      </figure> -->
     </step>
     <step>
      <para>
@@ -664,16 +777,17 @@
       the password and click <guimenu>Create Admin</guimenu>. You will be
       logged into the dashboard automatically.
      </para>
-     <informalfigure>
+     <figure>
+      <title>Dashboard Sign-Up</title>
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="velum_register.png" width="100%"/>
+        <imagedata fileref="velum_register.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="velum_register.png" width="100%"/>
+        <imagedata fileref="velum_register.png" width="75%"/>
        </imageobject>
       </mediaobject>
-     </informalfigure>
+     </figure>
     </step>
     <step>
      <para>
@@ -713,16 +827,17 @@
        </listitem>
       </varlistentry>
      </variablelist>
-     <informalfigure>
+     <figure>
+      <title>Initial &productname; Configuration</title>
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="velum_initial.png" width="100%"/>
+        <imagedata fileref="velum_initial.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="velum_initial.png" width="100%"/>
+        <imagedata fileref="velum_initial.png" width="75%"/>
        </imageobject>
       </mediaobject>
-     </informalfigure>
+     </figure>
      <para>
       Click <guimenu>Next</guimenu> to proceed and install some cluster nodes
       as described in <xref linkend="sec.installquick.node"/>.
@@ -815,16 +930,17 @@
       </para>
      </step>
      <step>
-      <informalfigure>
+      <figure>
+       <title>Boot Parameters for &ay; Installations</title>
        <mediaobject>
         <imageobject role="fo">
-         <imagedata fileref="install_boot_ay.png" width="100%"/>
+         <imagedata fileref="install_boot_ay.png" width="75%"/>
         </imageobject>
         <imageobject role="html">
-         <imagedata fileref="install_boot_ay.png" width="100%"/>
+         <imagedata fileref="install_boot_ay.png" width="75%"/>
         </imageobject>
        </mediaobject>
-      </informalfigure>
+      </figure>
       <para>
        Select <guimenu>Installation</guimenu> on the boot screen. Enter the
        necessary <guimenu>Boot Options</guimenu> for &ay; and networking,
@@ -909,16 +1025,17 @@
       You can accept individual nodes or all by clicking <guimenu>Accept All
       Nodes</guimenu>.
      </para>
-     <informalfigure>
+     <figure>
+      <title>Bootstrap the Cluster</title>
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="velum_nodes.png" width="100%"/>
+        <imagedata fileref="velum_nodes.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="velum_nodes.png" width="100%"/>
+        <imagedata fileref="velum_nodes.png" width="75%"/>
        </imageobject>
       </mediaobject>
-     </informalfigure>
+     </figure>
      <para>
       Use the check box in the first column to select the nodes you want to add
       to your cluster. In the last column, select the one that should become
@@ -937,16 +1054,17 @@
       indicator icon of the nodes changes accordingly and you can download the
       <command>kubectl</command> configuration file.
      </para>
-     <informalfigure>
+     <figure>
+      <title>Cluster Status</title>
       <mediaobject>
        <imageobject role="fo">
-        <imagedata fileref="velum_status.png" width="100%"/>
+        <imagedata fileref="velum_status.png" width="75%"/>
        </imageobject>
        <imageobject role="html">
-        <imagedata fileref="velum_status.png" width="100%"/>
+        <imagedata fileref="velum_status.png" width="75%"/>
        </imageobject>
       </mediaobject>
-     </informalfigure>
+     </figure>
     </step>
    </procedure>
   </sect2>

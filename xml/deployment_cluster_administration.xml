@@ -723,7 +723,7 @@ lock-group=default</screen>
     <step>
      <para>
       Prepare the node as described in
-      <xref linkend="sec.caasp.installquick.node"/>
+      <xref linkend="sec.installquick.node"/>
      </para>
     </step>
     <step>

@@ -106,7 +106,99 @@
  </sect1>
  
  <sect1>
-  <title>Detailled Installation Instructions</title>
+  <title>Detailled Installation Instructions</title>  
+  <para>
+   The interactive installation of &productname; split into several steps is
+   listed below. <!-- For more information about performing
+   non-interactive automated installations, see
+   <xref linkend="book.autoyast"/>.  -->
+  </para>
+  
+  <para>
+   After starting the installation, &productname; loads and configures a
+   minimal Linux system to run the installation procedure. To view the boot
+   messages and copyright notices during this process, press
+   <keycap function="escape"/>. On completion of this process, the &yast;
+   installation program starts and displays the graphical installer.
+  </para>
+  
+  <tip>
+   <title>Installation Without a Mouse</title>
+   <para>
+    If the installer does not detect your mouse correctly, use
+    <keycap function="tab"/> for navigation, arrow keys to scroll, and
+    <keycap function="enter"/> to confirm a selection. Various buttons or
+    selection fields contain a letter with an underscore. Use
+    <keycombo><keycap function="alt"/><keycap>Letter</keycap></keycombo> to
+    select a button or a selection directly instead of navigating there with
+    <keycap function="tab"/>.
+   </para>
+  </tip>
+  
+  <orderedlist spacing="normal">
+   <!-- <listitem>
+    <para>
+     <xref linkend="sec.i.yast2.self_update" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem> -->
+   <listitem>
+    <para>
+     <xref linkend="sec.install.keyboard" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install.rootpw" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <!-- <listitem arch="zseries" os="sles">
+    <para>
+     <xref linkend="sec.i.yast2.s390.part" xrefstyle="HeadingOnPage"/>
+    </para>
+    </listitem>  -->
+   <!-- <listitem os="sles;sled">  -->
+   <listitem>
+    <para>
+     <xref linkend="sec.install.registration" xrefstyle="HeadingOnPage"/>
+    </para>
+    <!-- <listitem os="sles;sled">  -->
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install.role" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install.ntp" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install.part" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install.bootloader" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install.network" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install.kdump" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install.sysinfo" xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+  </orderedlist>
   <para>
    Configure the following mandatory settings on the <guimenu>Installation
     Overview</guimenu> screen.
@@ -395,7 +487,7 @@
     </mediaobject>
    </informalfigure>
   </sect2>
-  <sect2>
+  <sect2 xml:id="sec.install.sysinfo">
    <title>System Information</title>
    <para>
     View detailed hardware information by clicking <guimenu>System
@@ -462,123 +554,6 @@
       Configure the following mandatory settings on the <guimenu>Installation
       Overview</guimenu> screen.
      </para>
-     <note>
-      <title>Help and Release Notes</title>
-      <para>
-       From this point on, a brief help document and the Release Notes can be
-       viewed from any screen during the installation process by selecting
-       <guimenu>Help</guimenu> or <guimenu>Release Notes</guimenu>
-       respectively.
-      </para>
-     </note>
-     <variablelist>
-      <varlistentry>
-       <term>
-        Keyboard Layout
-       </term>
-       <listitem>
-        <para>
-         The <guimenu>Keyboard Layout</guimenu> is initialized with the
-         language settings you have chosen on the boot screen. Change it here,
-         if necessary.
-        </para>
-       </listitem>
-      </varlistentry>
-      <varlistentry>
-       <term>
-        Password for root User
-       </term>
-       <listitem>
-        <para>
-         Type a password for the system administrator account (called the
-         &rootuser; user) and confirm it.
-        </para>
-        <warning>
-         <title>Do not forget the &rootuser; Password</title>
-         <para>
-          You should never forget the &rootuser; password! After you entered it
-          here, the password cannot be retrieved. See
-          <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_i_yast2_user_root.html"/>
-          for more information.
-         </para>
-        </warning>
-       </listitem>
-      </varlistentry>
-      <varlistentry>
-       <term>
-        Registration Code or SMT Server URL
-       </term>
-       <listitem>
-        <para>
-         Enter the <guimenu>Registration Code or SMT Server URL</guimenu>. SMT
-         Server URLs must use the <literal>https</literal> or
-         <literal>http</literal> protocol; other schemes are not supported.
-        </para>
-       </listitem>
-      </varlistentry>
-      <varlistentry>
-       <term>
-        System Role
-       </term>
-       <listitem>
-        <para>
-         Select the <guimenu>System Role</guimenu> for your system.
-        </para>
-        <variablelist>
-         <varlistentry>
-          <term>
-           Administration Node (Dashboard)
-          </term>
-          <listitem>
-           <para>
-            The &admin_node; providing the administration dashboard for the
-            cluster.
-           </para>
-          </listitem>
-         </varlistentry>
-         <varlistentry>
-          <term>
-           Cluster Node
-          </term>
-          <listitem>
-           <para>
-            A cluster node running containers or the container orchestration
-            framework.
-           </para>
-          </listitem>
-         </varlistentry>
-         <varlistentry>
-          <term>
-           Plain System
-          </term>
-          <listitem>
-           <para>
-            A plain node that can be used for testing and debugging purposes in
-            your cluster, but it is not usually needed.
-           </para>
-          </listitem>
-         </varlistentry>
-        </variablelist>
-       </listitem>
-      </varlistentry>
-      <varlistentry>
-       <term>
-        NTP Servers
-       </term>
-       <listitem>
-        <para>
-         Enter host names or IP addresses of one or more <guimenu>NTP
-         Servers</guimenu> for the node, separated by white spaces or colons.
-         While a single server is sufficient, nodes should use at least three
-         for optimal precision and reliability.
-        </para>
-        <para>
-         For more information about <literal>NTP</literal>, refer to
-         <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/cha_netz_xntp.html"/>
-        </para>
-       </listitem>
-      </varlistentry>
-     </variablelist>
      <informalfigure>
       <mediaobject>
        <imageobject role="fo">
@@ -594,177 +569,7 @@
       any changes, defaults are used. A brief summary of the settings is
       displayed below the respective settings option.
      </para>
-     <variablelist>
-      <varlistentry>
-       <term>
-        Partitioning
-       </term>
-       <listitem>
-        <para>
-         Review the partition setup proposed by the system and change it if
-         necessary. You have the following options:
-        </para>
-        <variablelist>
-         <varlistentry>
-          <term>
-           Select a hard disk
-          </term>
-          <listitem>
-           <para>
-            Select a disk to which install &productname; to with the
-            recommended partitioning scheme.
-           </para>
-          </listitem>
-         </varlistentry>
-         <varlistentry>
-          <term><guimenu>Custom Partitioning (for Experts)</guimenu>
-          </term>
-          <listitem>
-           <para>
-            Opens the <guimenu>Expert Partitioner</guimenu> described in
-            <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_yast2_i_y2_part_expert.html"/>
-            .
-           </para>
-           <warning>
-            <title>For Experts only</title>
-            <para>
-             As the name suggests, the <guimenu>Expert Partitioner</guimenu> is
-             for experts only. Custom partitioning schemes that do not meet the
-             requirements of &productname; are not supported.
-            </para>
-            <itemizedlist>
-             <title>Requirements for custom partitioning schemes</title>
-             <listitem>
-              <para>
-               &productname; exclusively supports the file system types &btrfs;
-               and OverlayFS. A read-only &btrfs; file system is used for the
-               root file system which enables transactional updates.
-              </para>
-             </listitem>
-             <listitem>
-              <para>
-               For snapshots, partitions must have a capacity of at least 11
-               GB.
-              </para>
-             </listitem>
-             <listitem>
-              <para>
-               Depending on the number and size of your containers, you will
-               need sufficient space under the <literal>/var</literal> mount
-               point.
-              </para>
-             </listitem>
-            </itemizedlist>
-           </warning>
-          </listitem>
-         </varlistentry>
-        </variablelist>
-        <para>
-         To accept the proposed setup without any changes, choose
-         <guimenu>Next</guimenu> to proceed.
-        </para>
-       </listitem>
-      </varlistentry>
-      <varlistentry>
-       <term>
-        Booting
-       </term>
-       <listitem>
-        <para>
-         This section shows the boot loader configuration. Changing the
-         defaults is only recommended if really needed. Refer to
-         <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/cha_grub2.html"/>
-         for details.
-        </para>
-       </listitem>
-      </varlistentry>
-      <varlistentry>
-       <term>
-        Network Configuration
-       </term>
-       <listitem>
-        <para>
-         If the network could not be configured automatically while starting
-         the installation system, you have to manually configure the
-         <guimenu>Network Settings</guimenu>. Please make sure at least one
-         network interface is connected to the Internet in order to register
-         your product.
-        </para>
-        <para>
-         By default, the installer requests a host name from the DHCP server.
-         If you set a custom name in the <guimenu>Hostname/DNS</guimenu> tab,
-         make sure the it is unique.
-        </para>
-        <para>
-         For more information on configuring network connections, refer to
-         <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/sec_basicnet_yast.html"/>
-         .
-        </para>
-        <important>
-         <title>Reliable Networking</title>
-         <para>
-          Please make sure all nodes are on the same network and can
-          communicate without interruptions. If you are using host names to
-          specify nodes, please make sure you have reliable DNS resolution at
-          all times, especially in combination with DHCP.
-         </para>
-        </important>
-       </listitem>
-      </varlistentry>
-      <varlistentry>
-       <term>
-        Kdump
-       </term>
-       <listitem>
-        <para>
-         Kdump saves the memory image (<quote>core dump</quote>) to the file
-         system in case the kernel crashes. This enables you to find the cause
-         of the crash by debugging the dump file. See
-         <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_tuning/data/cha_tuning_kdump_basic.html"/>
-         for more information.
-        </para>
-        <warning>
-         <title>Kdump with large amounts of RAM</title>
-         <para>
-          If you have a system with large amounts of RAM or a small hard drive,
-          core dumps may not be able to fit on the disk. If the installer warns
-          you about this, there are two options:
-         </para>
-         <orderedlist>
-          <listitem>
-           <para>
-            Enter the <guimenu>Expert Partitioner</guimenu> and increase the
-            size of the root partition so that it can accommodate the size of
-            the core dump. In this case, you will need to decrease the size of
-            the data partition accordingly. Remember to keep all other
-            parameters of the partitioning (e.g. the root file system, mount
-            point of data partition) when doing these changes.
-           </para>
-          </listitem>
-          <listitem>
-           <para>
-            Disable kdump completely.
-           </para>
-          </listitem>
-         </orderedlist>
-        </warning>
-       </listitem>
-      </varlistentry>
-      <varlistentry>
-       <term>
-        System Information
-       </term>
-       <listitem>
-        <para>
-         View detailed hardware information by clicking <guimenu>System
-         Information</guimenu>. In this screen you can also change
-         <guimenu>Kernel Settings</guimenu>. See
-         <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_tuning/data/cha_tuning_io.html"/>
-         for more information.
-        </para>
-       </listitem>
-      </varlistentry>
-     </variablelist>
+
      <para>
       Proceed with <guimenu>Next</guimenu>.
      </para>

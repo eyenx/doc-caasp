@@ -10,30 +10,24 @@
   xmlns:xlink="http://www.w3.org/1999/xlink">
  <info>
   <title>&productname; Cluster Deployment</title>
+  <!-- cwickert 2017-09-16: FIXME Should we call this "Installing &productname;" instead-->
   <dm:docmanager xmlns:dm="urn:x-suse:ns:docmanager">
    <dm:bugtracker></dm:bugtracker>
    <dm:translation>yes</dm:translation>
   </dm:docmanager>
  </info>
+ <!-- FIXME NEXT sentence should be changed -->
  <para>
   This chapter gives an overview on how to run through a default installation
   of &productname; for the &amd64;/&intel64; architecture.
  </para>
- <sect1 xml:id="sec.installquick">
-  <title>Installing &productname;</title>
-
-  <para>
-   Use the following procedures to set up a new &productnamereg;
-   &productnumber; cluster.
-  </para>
-
-  <sect2 xml:id="sec.installquick.sysreqs">
+ <sect1 xml:id="sec.installquick.sysreqs">
    <title>System Requirements</title>
    <para>
     Before you begin the installation, please make sure your system meets all
     requirements listed below.
    </para>
-   <sect3 xml:id="sec.installquick.hwreqs">
+   <sect2 xml:id="sec.installquick.hwreqs">
     <title>Minimum Hardware Requirements</title>
     <itemizedlist mark="bullet" spacing="normal">
      <listitem>
@@ -54,8 +48,8 @@
       </para>
      </listitem>
     </itemizedlist>
-   </sect3>
-   <sect3 xml:id="sec.installquick.netreqs">
+   </sect2>
+   <sect2 xml:id="sec.installquick.netreqs">
     <title>Network Requirements</title>
     <itemizedlist mark="bullet" spacing="normal">
      <listitem>
@@ -84,8 +78,8 @@
       </important>
      </listitem>
     </itemizedlist>
-   </sect3>
-   <sect3 xml:id="sec.installquick.limits">
+   </sect2>
+   <sect2 xml:id="sec.installquick.limits">
     <title>Limitations</title>
     <itemizedlist mark="bullet" spacing="normal">
      <listitem>
@@ -99,11 +93,10 @@
       </para>
      </listitem>
     </itemizedlist>
-   </sect3>
-  </sect2>
+   </sect2>
+  </sect1>
 
 <!-- ####### NEW ###### -->
- </sect1>
  
  <sect1>
   <title>Steps of the Installation</title>
@@ -148,7 +141,7 @@
   </tip>
   
   <orderedlist spacing="normal">
-   <title>Mandatory Steps</title>
+   <title>Mandatory Configuration</title>
    <!-- <listitem>
     <para>
      <xref linkend="sec.i.yast2.self_update" xrefstyle="HeadingOnPage"/>
@@ -225,8 +218,12 @@
    <title>Keyboard Layout</title>
    <para>
     The <guimenu>Keyboard Layout</guimenu> is initialized with the
-    language settings you have chosen on the boot screen. Change it, if
-    necessary.
+    language settings you have chosen on the boot screen. Override this
+    proposal by selecting a different keyboard layout from the drop-down box.
+    <!-- FIXME: MAke sure this is correct -->
+    <!-- The language selected here is also used to assume a time zone
+    for the system clock. This setting can be modified later in the installed
+    system as described in <xref linkend="cha.y2.lang"/>. -->
    </para>
   </sect2>
   <sect2 xml:id="sec.install.rootpw">
@@ -612,6 +609,11 @@
   <title>Quick Install </title>
   <sect2 xml:id="sec.installquick.admin">
    <title>Installing the Controller Node</title>
+   <para>
+    Use the following procedures to set up a new &productnamereg;
+    &productnumber; cluster.
+   </para>
+   <!-- FIXME: Duplication -->
    <para>
     Use these instructions if there is no existing Linux system on your
     machine, or if you want to replace an existing Linux system.

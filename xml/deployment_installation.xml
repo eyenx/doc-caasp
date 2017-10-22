@@ -108,6 +108,39 @@
    non-interactive automated installations, see
    <xref linkend="book.autoyast"/>. -->
   </para>
+  <!-- FIXME cwickert
+   Insert references to the 4 steps:
+   1. installation of the admin node
+   2. initial config of the admin node
+   3. installing additional cluster nodes
+   4. bootsratpping the cluster
+  -->
+  <!--
+  <orderedlist spacing="normal">
+   <title>Steps of the Installation</title>
+   <listitem>
+    <para>
+     <xref linkend="sec.install." xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install." xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install." xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+   <listitem>
+    <para>
+     <xref linkend="sec.install." xrefstyle="HeadingOnPage"/>
+    </para>
+   </listitem>
+  </orderedlist>
+  -->
+
  </sect1>
  <sect1>
   <title>Detailled Installation Instructions</title>  
@@ -149,7 +182,7 @@
    </listitem> -->
    <listitem>
     <para>
-     <xref linkend="sec.install.keyboard" xrefstyle="HeadingOnPage"/>
+     <xref linkend="sec.install.lang" xrefstyle="HeadingOnPage"/>
     </para>
    </listitem>
    <listitem>
@@ -214,13 +247,14 @@
     respectively.
    </para>
   </tip>
-  <sect2 xml:id="sec.install.keyboard">
-   <title>Keyboard Layout</title>
+  <sect2 xml:id="sec.install.lang">
+   <title>Language and Keyboard</title>
    <para>
-    The <guimenu>Keyboard Layout</guimenu> is initialized with the
-    language settings you have chosen on the boot screen. Override this
-    proposal by selecting a different keyboard layout from the drop-down box.
-    <!-- FIXME: MAke sure this is correct -->
+    Start the installation of &productname; by choosing your language. Changing
+    the language will automatically preselect a corresponding keyboard layout.
+    Override this proposal by selecting a different keyboard layout from the
+    drop-down box.
+    <!-- FIXME: Make sure this is correct -->
     <!-- The language selected here is also used to assume a time zone
     for the system clock. This setting can be modified later in the installed
     system as described in <xref linkend="cha.y2.lang"/>. -->
@@ -396,6 +430,9 @@
     For more information about <literal>NTP</literal>, refer to
     <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_admin/data/cha_netz_xntp.html"/>
    </para>
+   <!-- FIXME cwickert: Mention that NTP servers advertised through SLP will be
+    found automatically and how to set up SLP. Link to the SLP chapter in the
+    SLE 12 docs. -->
   </sect2>
   <sect2 xml:id="sec.install.part">
    <title>Partitioning</title>
@@ -442,7 +479,7 @@
         </listitem>
         <listitem>
          <para>
-          For snapshots, partitions must have a capacity of at least 11
+          For snapshots, partitions must have a capacity of at least 16
           GB.
          </para>
         </listitem>

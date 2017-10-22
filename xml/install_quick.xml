@@ -187,9 +187,9 @@
        </term>
        <listitem>
         <para>
-         The <guimenu>Keyboard Layout</guimenu> is initialized with the
-         language settings you have chosen on the boot screen. Change it here,
-         if necessary.
+         The <guimenu>Language</guimenu> and <guimenu>Keyboard Layout</guimenu>
+         are initialized with the language settings you have chosen on the boot
+         screen. Change them here, if necessary.
         </para>
        </listitem>
       </varlistentry>

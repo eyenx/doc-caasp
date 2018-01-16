@@ -19,7 +19,7 @@
   &productname; can be integrated with existing network infrastructure in
   multiple ways.
  </para>
- <sect1>
+ <sect1 xml:id="integration.ses">
   <title>Integration with SES</title>
 
   <para>
@@ -28,7 +28,7 @@
    chapter gives details how to integrate these two products in several ways.
   </para>
 
-  <sect2 xml:id="integration.prerequisites">
+  <sect2 xml:id="integration.ses.prerequisites">
    <title>Prerequisites</title>
    <para>
     Before you start the integration process, you need to ensure the following:
@@ -51,7 +51,7 @@
    </itemizedlist>
   </sect2>
 
-  <sect2 xml:id="integration.mounting.fixed.object">
+  <sect2 xml:id="integration.ses.mounting.fixed.object">
    <title>Mounting a Named Object Storage to a Container</title>
    <para>
     The procedure below describes steps to take when you need to mount a fixed
@@ -149,7 +149,7 @@
 <screen>kubectl delete pod <replaceable>busybox-rbd</replaceable></screen>
   </sect2>
 
-  <sect2 xml:id="integration.pods.persistent.volumes">
+  <sect2 xml:id="integration.ses.pods.persistent.volumes">
    <title>Creating Pods with Persistent Volumes</title>
    <para>
     The following procedure describes how to attach a pod to a persistent SES
@@ -282,6 +282,141 @@
      When you delete the pod, the persistent volume claim is deleted as well.
     </para>
    </note>
+  </sect2>
+ </sect1>
+
+ <sect1 xml:id="integration.registry-mirror">
+  <title>Setting up an on-premise mirror of &suse; registry</title>
+  <para>
+   This section describes how to configure an on-premise mirror of the &suse;
+   container registry.
+  </para>
+  <sect2 xml:id="sec.integration.registry-mirror.installation">
+   <title>Registry Installation</title>
+   <para>
+    On a regular &sls; machine, install the
+    <package>docker-distribution-registry</package> package. The package is available
+    as part of the <literal>Container</literal> module.
+   </para>
+   <sect3 xml:id="sec.cap.registry-mirror.enable-container-module.yast">
+    <title>Enabling the Container Module Using YaST</title>
+    <procedure xml:id="pro.registry-mirror.enable-container-module.yast">
+     <title>Enabling the Container Module Using YaST</title>
+     <step>
+      <para>
+       Start &yast; and select <guimenu>Software</guimenu>, then
+       <guimenu>Software Repositories</guimenu>.
+      </para>
+     </step>
+     <step>
+      <para>
+       Click <guimenu>Add</guimenu> to open the <guimenu>Add On Product</guimenu> dialog.
+      </para>
+     </step>
+     <step>
+      <para>
+       Select <menuchoice><guimenu>Extensions and Modules from Registration Server</guimenu></menuchoice> and click <guimenu>Next</guimenu>.
+      </para>
+     </step>
+     <step>
+      <para>
+       From the list of available extensions and modules, select
+       <literal>Container Module 12 x86_64</literal> and click <guimenu>Next</guimenu>. The
+       containers module and its repositories will be added to your system.
+      </para>
+     </step>
+     <step>
+      <para>
+       If you use <literal>Subscription Management Tool</literal>, update the list of repositories on the SMT server.
+      </para>
+     </step>
+    </procedure>
+   </sect3>
+   <sect3 xml:id="sec.cap.registry-mirror.enable-container-module.suse-connect">
+    <title>Enabling the Container Module Using SUSEConnect</title>
+    <para>
+     The Container Module can be added also with the following command:
+    </para>
+    <screen>&prompt.user;&sudo; <command>SUSEConnect</command> <option>-p sle-module-containers/12/x86_64 -r ''</option></screen>
+    <note>
+     <title>About the SUSEConnect Syntax</title>
+     <para>
+      The <literal>-r ''</literal> flag is required to avoid a known limitation
+      of <command>SUSEConnect</command>.
+     </para>
+    </note>
+   </sect3>
+  </sect2>
+  <sect2 xml:id="sec.integration.registry-mirror.install.package">
+   <title>Installing the Registry</title>
+   <para>
+    Install the <package>docker-distribution-registry</package> package:
+   </para>
+   <screen>&prompt.user;&sudo; <command>zypper</command> <option>in docker-distribution-registry</option></screen>
+  </sect2>
+
+  <sect2 xml:id="sec.integration.mirror-configuration">
+   <title>Mirror Configuration</title>
+   <para>
+    The registry package provides a default configuration file
+    <filename>/etc/registry/config.yml</filename>. Edit the file and add the
+    following lines at the bottom of it:
+   </para>
+   <screen>
+    proxy:
+    remoteurl: https://registry.suse.com
+   </screen>
+   <para>
+    The complete file should look as follows:
+   </para>
+   <screen>
+    version: 0.1
+    log:
+    level: info
+    storage:
+    filesystem:
+    rootdirectory: /var/lib/docker-registry
+    http:
+    addr: 0.0.0.0:5000
+    proxy:
+    remoteurl: https://registry.suse.com
+   </screen>
+   <note>
+    <title>Security, Authentication and Authorization of the Registry</title>
+    <para>
+     The default configuration is not using certificates to secure the
+     communication between this registry and the nodes communicating with it.
+     Also there is no authentication and authorization in place.
+    </para>
+    <para>
+     For production usage it is recommended to deploy the registry using TLS
+     certificates and implement authentication and authorization by deploying a
+     Portus instance.
+    </para>
+   </note>
+  </sect2>
+  <sect2 xml:id="sec.cap.registry-mirror.usage">
+   <title>Using the Mirror</title>
+   <para>
+    Please refer to the &suse; &productname; documentation to configure your
+    cluster to take advantage of this on-premise mirror.
+    <!-- cwickert 2018-01-11 Insert link here, once there is documentation on this for CaaSP -->
+   </para>
+   <para>
+    The mirror acts as a pull-through cache, meaning it starts empty and gets
+    populated as soon as the pull requests are created by nodes of the &suse;
+    &productname; cluster.
+   </para>
+   <para>
+    Nothing has to be changed inside of Dockerfile(s), &kube; manifest files,
+    Helm charts, custom scripts, etc. All the images with a prefix
+    <literal>registry.suse.com/</literal> will be automatically pulled from this
+    on-premise mirror.
+   </para>
+   <para>
+    The mirror is read-only. It is not possible to push custom images to it.
+    Please deploy a dedicated for your custom images.
+   </para>
   </sect2>
  </sect1>
 </chapter>

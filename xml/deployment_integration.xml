@@ -286,7 +286,7 @@
  </sect1>
 
  <sect1 xml:id="integration.registry-mirror">
-  <title>Setting up an on-premise mirror of &suse; registry</title>
+  <title>Setting up an on-premise registry</title>
   <para>
    This section describes how to configure an on-premise mirror of the &suse;
    container registry.
@@ -346,13 +346,13 @@
      </para>
     </note>
    </sect3>
-  </sect2>
-  <sect2 xml:id="sec.integration.registry-mirror.install.package">
-   <title>Installing the Registry</title>
-   <para>
-    Install the <package>docker-distribution-registry</package> package:
-   </para>
-   <screen>&prompt.user;&sudo; <command>zypper</command> <option>in docker-distribution-registry</option></screen>
+   <sect3 xml:id="sec.integration.registry-mirror.install.package">
+    <title>Installing the Registry</title>
+    <para>
+     Install the <package>docker-distribution-registry</package> package:
+    </para>
+    <screen>&prompt.user;&sudo; <command>zypper</command> <option>in docker-distribution-registry</option></screen>
+   </sect3>
   </sect2>
 
   <sect2 xml:id="sec.integration.mirror-configuration">

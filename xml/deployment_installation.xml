@@ -137,6 +137,36 @@
   <title>Detailled Installation Instructions</title>  
   
   <para>
+   Insert the &productname; DVD into the drive, then reboot the computer to
+   start the installation program. On machines with a traditional BIOS you
+   will see the graphical boot screen shown below. On machines equipped with
+   UEFI, a slightly different boot screen is used. Secure boot on UEFI
+   machines is supported.
+  </para>
+  <para>
+   Use <keycap>F2</keycap> to change the language for the installer. A
+   corresponding keyboard layout is chosen automatically. See
+   <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_i_yast2_startup.html"/>
+   for more information about changing boot options.
+  </para>
+  <para>
+   Select <guimenu>Installation</guimenu> on the boot screen, then press
+   <keycap function="enter"/>. This boots the system and loads the
+   &productname; installer.
+  </para>
+  <figure>
+   <title>The Boot Screen on Machines with a Traditional BIOS</title>
+   <mediaobject>
+    <imageobject role="fo">
+     <imagedata fileref="install_boot.png" width="75%"/>
+    </imageobject>
+    <imageobject role="html">
+     <imagedata fileref="install_boot.png" width="75%"/>
+    </imageobject>
+   </mediaobject>
+  </figure>
+
+  <para>
    After starting the installation, &productname; loads and configures a
    minimal Linux system to run the installation procedure. To view the boot
    messages and copyright notices during this process, press
@@ -157,12 +187,17 @@
    </para>
   </tip>
   
+  <!-- <para>
+   Read the License Agreement. It is presented in the language you have
+   chosen on the boot screen. <guimenu>License Translations</guimenu> are
+   available. You need to accept the agreement by checking <guimenu>I Agree
+   to the License Terms</guimenu> to install &productname;. Proceed with
+   <guimenu>Next</guimenu>.
+   </para>  -->
+ 
   <para>
-   The interactive installation of &productname; split into several steps is
-   listed below. Some are mandatory while others are optional.
-   <!-- FIXME cwickert 2017-08-09
-    For more information about performing non-interactive automated
-    installations, see <xref linkend="book.autoyast"/>. -->
+   Configure the following mandatory settings on the <guimenu>Installation
+    Overview</guimenu> screen.
   </para>
   
   <orderedlist spacing="normal">
@@ -198,6 +233,11 @@
     </para>
    </listitem>
   </orderedlist>
+  <para>
+   Optionally, you can customize the following settings. If you do not make
+   any changes, defaults are used. A brief summary of the settings is
+   displayed below the respective settings option.
+  </para>
   <orderedlist>
    <title>Optional Configuration</title>
    <listitem>
@@ -226,10 +266,6 @@
     </para>
    </listitem>
   </orderedlist>
-  <para>
-   Configure the following mandatory settings on the <guimenu>Installation
-    Overview</guimenu> screen.
-  </para>
   <tip>
    <title>Help and Release Notes</title>
    <para>
@@ -239,6 +275,17 @@
     respectively.
    </para>
   </tip>
+  <figure>
+   <title>Installation Overview</title>
+   <mediaobject>
+    <imageobject role="fo">
+     <imagedata fileref="install_overview_admin.png" width="75%"/>
+    </imageobject>
+    <imageobject role="html">
+     <imagedata fileref="install_overview_admin.png" width="75%"/>
+    </imageobject>
+   </mediaobject>
+  </figure>
   <sect2 xml:id="sec.install.lang">
    <title>Language and Keyboard</title>
    <para>
@@ -320,7 +367,13 @@
    </note>
    
    <para>
-    To register your system, provide the <guimenu>E-mail</guimenu> address
+    To register your system, enter the <guimenu>Registration Code or SMT Server
+     URL</guimenu>. SMT Server URLs must use the <literal>https</literal> or
+    <literal>http</literal> protocol; other schemes are not supported.
+   </para>
+   
+   <para>
+    provide the <guimenu>E-mail</guimenu> address
     associated with the &suse; account you or your organization uses to manage
     subscriptions. In case you do not have a SUSE account yet, go to the &scc;
     home page (<link xlink:href="&sccurl;"/>) to create one.
@@ -346,7 +399,7 @@
     again.
    </para>
    
-   <!-- <para>
+  <para>
     During the registration, the online update repositories will be added to
     your installation setup. When finished, you can choose whether to install
     the latest available package versions from the update repositories. This
@@ -361,13 +414,8 @@
     disks when the installation has been completed. This prevents problems if
     the installation source is no longer available and ensures that you always
     get the latest updates from the online repositories.
-    </para> -->
-   
-   <para>
-    Enter the <guimenu>Registration Code or SMT Server URL</guimenu>. SMT
-    Server URLs must use the <literal>https</literal> or
-    <literal>http</literal> protocol; other schemes are not supported.
    </para>
+   
   </sect2>
   <sect2 xml:id="sec.install.role">
    <title>System Role</title>
@@ -442,6 +490,17 @@
        Select a disk to which install &productname; to with the
        recommended partitioning scheme.
       </para>
+      <figure>
+       <title>Hard Disk Selection</title>
+       <mediaobject>
+        <imageobject role="fo">
+         <imagedata fileref="install_partitioner.png" width="75%"/>
+        </imageobject>
+        <imageobject role="html">
+         <imagedata fileref="install_partitioner.png" width="75%"/>
+        </imageobject>
+       </mediaobject>
+      </figure>
      </listitem>
     </varlistentry>
     <varlistentry>
@@ -484,6 +543,16 @@
         </listitem>
        </itemizedlist>
       </warning>
+      <informalfigure>
+       <mediaobject>
+        <imageobject role="fo">
+         <imagedata fileref="install_partitioner_expert.png" width="75%"/>
+        </imageobject>
+        <imageobject role="html">
+         <imagedata fileref="install_partitioner_expert.png" width="75%"/>
+        </imageobject>
+       </mediaobject>
+      </informalfigure>
      </listitem>
     </varlistentry>
    </variablelist>
@@ -491,28 +560,7 @@
     To accept the proposed setup without any changes, choose
     <guimenu>Next</guimenu> to proceed.
    </para>
-   <figure>
-    <title>Hard Disk Selection</title>
-    <mediaobject>
-     <imageobject role="fo">
-      <imagedata fileref="install_partitioner.png" width="75%"/>
-     </imageobject>
-     <imageobject role="html">
-      <imagedata fileref="install_partitioner.png" width="75%"/>
-     </imageobject>
-    </mediaobject>
-   </figure>
-   <figure>
-    <title>Expert Partitioner</title>
-    <mediaobject>
-     <imageobject role="fo">
-      <imagedata fileref="install_partitioner_expert.png" width="75%"/>
-     </imageobject>
-     <imageobject role="html">
-      <imagedata fileref="install_partitioner_expert.png" width="75%"/>
-     </imageobject>
-    </mediaobject>
-   </figure>
+
   </sect2>
   <sect2 xml:id="sec.install.bootloader">
    <title>Booting</title>
@@ -630,6 +678,49 @@
     for more information.
    </para>
   </sect2>
+  <sect2>
+   <title></title>
+   <para>
+    After you have finalized the system configuration on the
+    <guimenu>Installation Overview</guimenu> screen, click
+    <guimenu>Install</guimenu>. Up to this point no changes have been made to
+    your system. After you click <guimenu>Install</guimenu> a second time,
+    the installation process starts.
+   </para>
+   <figure>
+    <title>Installation Confirmation</title>
+    <mediaobject>
+     <imageobject role="fo">
+      <imagedata fileref="install_confirm.png" width="75%"/>
+     </imageobject>
+     <imageobject role="html">
+      <imagedata fileref="install_confirm.png" width="75%"/>
+     </imageobject>
+    </mediaobject>
+   </figure>
+   <para>
+    During the installation, the progress is shown in detail on the
+    <guimenu>Details</guimenu> tab.
+   </para>
+   <!-- FIXME cwickert 2017-08-09: We don't really need this screen, do we? -->
+   <figure>
+    <title>Installation Progress</title>
+    <mediaobject>
+     <imageobject role="fo">
+      <imagedata fileref="install_perform.png" width="75%"/>
+     </imageobject>
+     <imageobject role="html">
+      <imagedata fileref="install_perform.png" width="75%"/>
+     </imageobject>
+    </mediaobject>
+   </figure>
+   <para>
+    After the installation routine has finished, the computer is rebooted
+    into the installed system.
+   </para>
+   
+  </sect2>
+  
  </sect1>
  
  <!-- ####### OLD ###### -->
@@ -649,124 +740,15 @@
    </para>
    <procedure xml:id="pro.install.admin">
     <step>
-     <para>
-      Insert the &productname; DVD into the drive, then reboot the computer to
-      start the installation program. On machines with a traditional BIOS you
-      will see the graphical boot screen shown below. On machines equipped with
-      UEFI, a slightly different boot screen is used. Secure boot on UEFI
-      machines is supported.
-     </para>
-     <para>
-      Use <keycap>F2</keycap> to change the language for the installer. A
-      corresponding keyboard layout is chosen automatically. See
-      <link xlink:href="https://www.suse.com/documentation/sles-12/book_sle_deployment/data/sec_i_yast2_startup.html"/>
-      for more information about changing boot options.
-     </para>
-     <figure>
-      <title>The Boot Screen on Machines with a Traditional BIOS</title>
-      <mediaobject>
-       <imageobject role="fo">
-        <imagedata fileref="install_boot.png" width="75%"/>
-       </imageobject>
-       <imageobject role="html">
-        <imagedata fileref="install_boot.png" width="75%"/>
-       </imageobject>
-      </mediaobject>
-     </figure>
-    </step>
-    <step>
-     <para>
-      Select <guimenu>Installation</guimenu> on the boot screen, then press
-      <keycap function="enter"/>. This boots the system and loads the
-      &productname; installer.
-     </para>
-    </step>
-    <step>
-<!-- <para>
-      Read the License Agreement. It is presented in the language you have
-      chosen on the boot screen. <guimenu>License Translations</guimenu> are
-      available. You need to accept the agreement by checking <guimenu>I Agree
-      to the License Terms</guimenu> to install &productname;. Proceed with
-      <guimenu>Next</guimenu>.
-      </para>  -->
-     <para>
-      Configure the following mandatory settings on the <guimenu>Installation
-      Overview</guimenu> screen.
-     </para>
-     <figure>
-      <title>Installation Overview</title>
-      <mediaobject>
-       <imageobject role="fo">
-        <imagedata fileref="install_overview_admin.png" width="75%"/>
-       </imageobject>
-       <imageobject role="html">
-        <imagedata fileref="install_overview_admin.png" width="75%"/>
-       </imageobject>
-      </mediaobject>
-     </figure>
-     <para>
-      Optionally, you can customize the following settings. If you do not make
-      any changes, defaults are used. A brief summary of the settings is
-      displayed below the respective settings option.
-     </para>
+
+
+
 
      <para>
       Proceed with <guimenu>Next</guimenu>.
      </para>
-     <tip>
-      <title>Installing Product Patches at Installation Time</title>
-      <para>
-       If &productname; has been successfully registered at the &scc;, you are
-       asked whether to install the latest available online updates during the
-       installation. If choosing <guimenu>Yes</guimenu>, the system will be
-       installed with the most current packages without having to apply the
-       updates after installation. Activating this option is recommended.
-      </para>
-     </tip>
-    </step>
-    <step>
-     <para>
-      After you have finalized the system configuration on the
-      <guimenu>Installation Overview</guimenu> screen, click
-      <guimenu>Install</guimenu>. Up to this point no changes have been made to
-      your system. After you click <guimenu>Install</guimenu> a second time,
-      the installation process starts.
-     </para>
-     <figure>
-      <title>Installation Confirmation</title>
-      <mediaobject>
-       <imageobject role="fo">
-        <imagedata fileref="install_confirm.png" width="75%"/>
-       </imageobject>
-       <imageobject role="html">
-        <imagedata fileref="install_confirm.png" width="75%"/>
-       </imageobject>
-      </mediaobject>
-     </figure>
-    </step>
-    <step>
-     <para>
-      During the installation, the progress is shown in detail on the
-      <guimenu>Details</guimenu> tab.
-     </para>
-     <!-- FIXME cwickert 2017-08-09: We don't really need this screen, do we? -->
-     <figure>
-      <title>Installation Progress</title>
-      <mediaobject>
-       <imageobject role="fo">
-        <imagedata fileref="install_perform.png" width="75%"/>
-       </imageobject>
-       <imageobject role="html">
-        <imagedata fileref="install_perform.png" width="75%"/>
-       </imageobject>
-      </mediaobject>
-     </figure>
-    </step>
-    <step>
-     <para>
-      After the installation routine has finished, the computer is rebooted
-      into the installed system.
-     </para>
+     
+
     </step>
    </procedure>
   </sect2>

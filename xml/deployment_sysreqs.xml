@@ -410,6 +410,7 @@
          </entry>
         </row>
        </thead>
+       
        <tbody>
         <row>
          <entry>
@@ -443,6 +444,7 @@
           </para>
          </entry>
         </row>
+        
         <row>
          <entry morerows="4" valign="middle">
           <para>
@@ -471,6 +473,7 @@
          </entry>
          <entry/>
         </row>
+        
         <row>
          <entry>
           <para>
@@ -498,6 +501,7 @@
           </para>
          </entry>
         </row>
+        
         <row>
          <entry>
           <para>
@@ -521,6 +525,35 @@
          </entry>
          <entry/>
         </row>
+        
+        <row>
+         <entry>
+          <para>
+           636
+          </para>
+         </entry>
+         <entry>
+          <para>
+           External
+          </para>
+         </entry>
+         <entry>
+          <para>
+           No
+          </para>
+         </entry>
+         <entry>
+          <para>
+           LDAP via SSL
+          </para>
+         </entry>
+         <entry>
+          <para>
+           User management
+          </para>
+         </entry>
+        </row>
+        
         <row>
          <entry>
           <para>
@@ -544,6 +577,7 @@
          </entry>
          <entry/>
         </row>
+        
         <row>
          <entry>
           <para>
@@ -567,6 +601,7 @@
          </entry>
          <entry/>
         </row>
+        
         <row>
          <entry morerows="2" valign="middle">
           <para>
@@ -599,6 +634,7 @@
           </para>
          </entry>
         </row>
+        
         <row>
          <entry>
           <para>
@@ -626,6 +662,7 @@
           </para>
          </entry>
         </row>
+        
         <row>
          <entry>
           <para>
@@ -649,6 +686,7 @@
          </entry>
          <entry/>
         </row>
+        
         <row>
          <entry morerows="2" valign="middle">
           <para>
@@ -681,6 +719,7 @@
           </para>
          </entry>
         </row>
+        
         <row>
          <entry>
           <para>
@@ -708,6 +747,7 @@
           </para>
          </entry>
         </row>
+        
         <row>
          <entry>
           <para>

@@ -55,13 +55,11 @@
     from the cluster are then exported using REST endpoints.
    </para>
    <para>
-    To deploy <emphasis>Heapster</emphasis>, run the following command:
+    To deploy <emphasis>Heapster</emphasis>, refer to <xref linkend="sec.admin.software.helm.installing-heapster"/>
    </para>
- <screen>&prompt.user;<command>kubectl apply -f \
-https://raw.githubusercontent.com/SUSE/caasp-services/master/contrib/addons/heapster/heapster.yaml</command></screen>
    <para>
-    <emphasis>Heapster</emphasis> can store data in
-    <emphasis>InfluxDB</emphasis>, which can be then used by other tools.
+     <emphasis>Heapster</emphasis> can store data in
+     <emphasis>InfluxDB</emphasis>, which can be then used by other tools.
    </para>
   </sect2>
 

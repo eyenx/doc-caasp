@@ -26,21 +26,20 @@
   <itemizedlist>
    <listitem>
     <para>
-     by directly accessing the <emphasis>cAdvisor</emphasis> on
-     <literal>http://<replaceable>WORKER NODE ADDRESS</replaceable>
-     ;:4194/containers/</literal>. The <emphasis>cAdvisor</emphasis> runs on
-     worker nodes by default.
+     by directly accessing the <link xlink:href="https://github.com/google/cadvisor">cAdvisor</link>
+     on <literal>http://<replaceable>WORKER NODE ADDRESS</replaceable>:4194/containers/</literal>.
+     The <emphasis>cAdvisor</emphasis> runs on worker nodes by default.
     </para>
    </listitem>
    <listitem>
     <para>
-     By using <emphasis>Heapster</emphasis>, for details refer to
+     By using <link xlink:href="https://github.com/kubernetes/heapster">Heapster</link>, for details refer to
      <xref linkend="sec.admin.cluster-monitoring.heapster"/>.
     </para>
    </listitem>
    <listitem>
     <para>
-     By using <emphasis>Grafana</emphasis>, for details refer to
+     By using <link xlink:href="https://grafana.com/">Grafana</link>, for details refer to
      <xref linkend="sec.admin.cluster-monitoring.grafana"/>.
     </para>
    </listitem>
@@ -55,7 +54,8 @@
     from the cluster are then exported using REST endpoints.
    </para>
    <para>
-    To deploy <emphasis>Heapster</emphasis>, refer to <xref linkend="sec.admin.software.helm.installing-heapster"/>
+    To deploy <emphasis>Heapster</emphasis>, refer to
+    <xref linkend="sec.admin.software.helm.installing-heapster"/>
    </para>
    <para>
      <emphasis>Heapster</emphasis> can store data in
@@ -71,25 +71,33 @@
     You can deploy <emphasis>Grafana</emphasis> by running the following
     commands:
    </para>
- <screen>&prompt.user;<command>kubectl apply -f \
-https://raw.githubusercontent.com/SUSE/caasp-services/master/contrib/addons/heapster/heapster.yaml</command>
-&prompt.user;<command>kubectl apply -f \
-https://raw.githubusercontent.com/kubernetes/heapster/master/deploy/kube-config/influxdb/influxdb.yaml</command>
-&prompt.user;<command>kubectl apply -f \
-https://raw.githubusercontent.com/kubernetes/heapster/release-1.3/deploy/kube-config/influxdb/grafana-deployment.yaml</command>
-&prompt.user;<command>curl https://raw.githubusercontent.com/kubernetes/heapster/release-1.3/deploy/kube-config/influxdb/grafana-service.yaml -o grafana-service.yaml</command></screen>
-   <para>
-    Then open the file <filename>grafana-service.yaml</filename>:
-   </para>
- <screen>&prompt.user;<command>vi grafana-service.yaml</command></screen>
-   <para>
-    In the file uncomment the line with the <literal>NodePort</literal> type.
-   </para>
-   <para>
-    To finish the <emphasis>Grafana</emphasis> installation, apply the
-    configuration by running:
-   </para>
-<screen>&prompt.root;<command>kubectl apply -f grafana-service.yaml</command></screen>
+   <procedure>
+    <title>Deploying Grafana And Required Components</title>
+    <step>
+     <para>
+      Install heapster as described in
+      <xref linkend="sec.admin.software.helm.installing-heapster"/>.
+     </para>
+    </step>
+    <step>
+     <para>
+      Install InfluxDB.
+     </para>
+<screen>&prompt.root;<command>helm install stable/influxdb \
+--name influxdb \
+--namespace=kube-system</command>
+     </screen>
+    </step>
+    <step>
+     <para>
+      Install grafana.
+     </para>
+<screen>&prompt.root;<command>helm install --name heapster-default \
+--namespace=kube-system stable/grafana \
+--version=1.14.0 \
+--set spec.type=NodePort</command></screen>
+</step>
+   </procedure>
   </sect2>
  </sect1>
 </chapter>
